@@ -5,11 +5,10 @@ Param(
 [Parameter(Mandatory=$true)][String]$Depth = $null)  
 $z = Get-ChildItem registry::HKEY_CLASSES_ROOT\WOW6432Node\CLSID -Recurse | Where-Object Name -match ProgID | ForEach GetValue ''
 $y = $z | Get-Unique
-$w = ForEach($x in $y){If($x -notmatch '\.1'){$x}}
 $ErrorActionPreference = 'silentlyContinue'
 If($Depth -eq 1)
 {
-    ForEach($v in $w)
+    ForEach($v in $y)
     {
         $com = [activator]::CreateInstance([type]::GetTypeFromProgID("$v")) #Instantiate the COM Object
         $members = $com | Get-Member #Store all the members into a variable
@@ -24,7 +23,7 @@ If($Depth -eq 1)
 
 If($Depth -eq 2)
 {
-    ForEach($v in $z)
+    ForEach($v in $y)
     {
         $com = [activator]::CreateInstance([type]::GetTypeFromProgID("$v")) #Instantiate the COM Object
         $members = $com | Get-Member #Store all the members into a variable
@@ -61,7 +60,7 @@ If($Depth -eq 2)
 
 If($Depth -eq 3)
 {
-    ForEach($v in $z)
+    ForEach($v in $y)
     {
         $com = [activator]::CreateInstance([type]::GetTypeFromProgID("$v")) #Instantiate the COM Object
         $members = $com | Get-Member #Store all the members into a variable
