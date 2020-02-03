@@ -8,4 +8,4 @@ Usage Example: .\CMS.ps1 -CLSIDs -Depth 3 -Term ExecuteShell
 Usage Example: .\CMS.ps1 -ProgIDs -Depth 2 -Term ExecuteShell
 
 
-![Example](https://i.imgur.com/R7Bx5fb.png)
+![Example](https://i.imgur.com/gYrtLvi.png)
