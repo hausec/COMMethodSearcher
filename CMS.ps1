@@ -16,9 +16,7 @@ $w = ForEach($x in $y){If($x -notmatch '\.1'){$x}}
 If($Depth -eq 1)
 {
     ForEach($v in $w)
-    {Sleep 1
-        $v
-        
+    {
         $com = [activator]::CreateInstance([type]::GetTypeFromProgID("$v")) #Instantiate the COM Object
         $members = $com | Get-Member #Store all the members into a variable
         ForEach($member in $members)
