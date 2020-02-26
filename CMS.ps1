@@ -2,13 +2,13 @@
 Param(
 [Int]$threads=20,
 [Parameter(Mandatory=$true)][String]$Term = $null,
-[Parameter(Mandatory=$false)][String]$CLSIDs = $null,
-[Parameter(Mandatory=$false)][String]$ProgIDs = $null,
+[Parameter(Mandatory=$false)][switch]$CLSIDs = $null,
+[Parameter(Mandatory=$false)][switch]$ProgIDs = $null,
 [Parameter(Mandatory=$true)][String]$Depth = $null)  
 
 $ErrorActionPreference = 'silentlyContinue'
 
-If($ProgIDsOnly)
+If($ProgIDs)
 {
 $z = Get-ChildItem registry::HKEY_CLASSES_ROOT\WOW6432Node\CLSID -Recurse | Where-Object Name -match ProgID | ForEach GetValue ''
 $y = $z | Get-Unique
@@ -263,4 +263,3 @@ If($Depth -eq 3)
     } 
 }
 }
-
